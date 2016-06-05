@@ -11,4 +11,5 @@ use Bolt\Extension\SimpleExtension;
  */
 class {nameUcf}Extension extends SimpleExtension
 {
+
 }

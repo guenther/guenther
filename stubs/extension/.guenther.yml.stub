@@ -1,3 +1,8 @@
+# Configuration file for the Günther command line tool.
+#
+# Folders are relative to '/src' inside the extension directory.
+# Namespaces are relative to the root namespace of the extension.
+
 controllers:
     folder: Controller
     namespace: Controller
