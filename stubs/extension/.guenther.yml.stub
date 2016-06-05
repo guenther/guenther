@@ -6,3 +6,6 @@ fields:
     namespace: Field
     template:
         folder: fields
+providers:
+    folder: Provider
+    namespace: Provider

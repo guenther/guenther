@@ -1,0 +1,38 @@
+<?php
+
+namespace {namespace};
+
+use Silex\Application;
+use Silex\ServiceProviderInterface;
+
+class {name} implements ServiceProviderInterface
+{
+    /** @var array */
+    private $config;
+
+    /**
+     * Service Provider Constructor
+     *
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function register(Application $app)
+    {
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function boot(Application $app)
+    {
+
+    }
+}
