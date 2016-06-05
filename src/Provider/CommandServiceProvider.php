@@ -13,6 +13,7 @@ class CommandServiceProvider implements ServiceProviderInterface
         \Guenther\Guenther\Command\Make\Controller::class,
         \Guenther\Guenther\Command\Make\Field::class,
         \Guenther\Guenther\Command\Make\Provider::class,
+        \Guenther\Guenther\Command\Make\Command::class,
     ];
 
     public function register(Container $container)

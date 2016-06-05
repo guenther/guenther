@@ -9,3 +9,6 @@ fields:
 providers:
     folder: Provider
     namespace: Provider
+commands:
+    folder: Nut
+    namespace: Nut
