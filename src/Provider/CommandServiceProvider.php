@@ -9,6 +9,7 @@ class CommandServiceProvider implements ServiceProviderInterface
 {
     protected $commands = [
         //\Guenther\Guenther\Command\Test::class,
+        \Guenther\Guenther\Command\Leaves::class,
         \Guenther\Guenther\Command\Init::class,
         \Guenther\Guenther\Command\Make\Controller::class,
         \Guenther\Guenther\Command\Make\Field::class,
