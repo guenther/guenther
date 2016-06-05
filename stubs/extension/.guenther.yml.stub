@@ -12,3 +12,6 @@ providers:
 commands:
     folder: Nut
     namespace: Nut
+listeners:
+    folder: Listener
+    namespace: Listener

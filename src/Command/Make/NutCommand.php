@@ -2,13 +2,13 @@
 
 namespace Guenther\Guenther\Command\Make;
 
-use Guenther\Guenther\Command\Command as BaseCommand;
+use Guenther\Guenther\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
-class Command extends BaseCommand
+class NutCommand extends Command
 {
     protected function configure()
     {

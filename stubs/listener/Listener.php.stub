@@ -1,0 +1,51 @@
+<?php
+
+namespace {namespace};
+
+use Bolt\Events\StorageEvent;
+use Silex\Application;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+class {name} implements EventSubscriberInterface
+{
+    /** @var Application */
+    private $app;
+
+    /** @var array */
+    private $config;
+
+    /**
+     * Initiate the listener with Bolt Application instance and extension config.
+     *
+     * @param Application $app
+     * @param $config
+     */
+    public function __construct(Application $app, array $config)
+    {
+        $this->app = $app;
+        $this->config = $config;
+    }
+
+    // /**
+    //  * EXAMPLE
+    //  *
+    //  * Handles POST_SAVE storage event
+    //  *
+    //  * @param StorageEvent $event
+    //  */
+    // public function onPostSave(StorageEvent $event)
+    // {
+    //     $id = $event->getId();
+    //     $contenttype = $event->getContentType();
+    //     $record = $event->getContent();
+    //     $created = $event->isCreate();
+    // }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [];
+    }
+}
