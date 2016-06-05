@@ -1,0 +1,8 @@
+controllers:
+    folder: Controller
+    namespace: Controller
+fields:
+    folder: Field
+    namespace: Field
+    template:
+        folder: fields

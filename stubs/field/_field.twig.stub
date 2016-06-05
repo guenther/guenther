@@ -1,0 +1,18 @@
+{#=== Options ============================================================================#}
+
+{% set attr_opt = {
+    class:        field.class|default(''),
+    name_id:      key,
+    required:     field.required|default(false),
+    readonly:     field.readonly|default(false)
+}%}
+
+{#=== FIELDSET ============================================================================#}
+
+<fieldset class="form-group {nameLc}">
+    <legend class="sr-only">{{ field.label|default(key) }}</legend>
+            <label class="main control-label col-xs-12 control-label">{{ field.label|default(key) }}: </label>
+            <div class="col-xs-12">
+        <input class="form-control" {{ macro.attr(attr_opt) }} type="text" value="{{ context.content.get(key) }}" >
+    </div>
+</fieldset>

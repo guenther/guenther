@@ -1,0 +1,30 @@
+<?php
+
+namespace {namespace};
+
+use Bolt\Field\FieldInterface;
+
+class {name} implements FieldInterface
+{
+
+    public function getName()
+    {
+        return '{nameLc}';
+    }
+
+    public function getTemplate()
+    {
+        return '{templatePath}';
+    }
+
+    public function getStorageType()
+    {
+        return 'text';
+    }
+
+    public function getStorageOptions()
+    {
+        return ['default' => ''];
+    }
+
+}

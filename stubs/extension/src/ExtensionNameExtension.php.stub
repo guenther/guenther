@@ -1,0 +1,14 @@
+<?php
+
+namespace Bolt\Extension\{vendorUcf}\{nameUcf};
+
+use Bolt\Extension\SimpleExtension;
+
+/**
+ * {nameUcf} extension class.
+ *
+ * @author Your Name <you@example.com>
+ */
+class {nameUcf}Extension extends SimpleExtension
+{
+}
