@@ -1,5 +1,14 @@
 {
     "name": "guenther/guenther",
+    "description": "Command line tool to bootstrap and build Bolt CMS extensions.",
+    "keywords": [
+        "cli",
+        "tool",
+        "helper",
+        "bootstrap",
+        "bolt",
+        "bolt cms"
+    ],
     "license": "MIT",
     "authors": [
         {
