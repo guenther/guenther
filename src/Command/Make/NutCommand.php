@@ -46,16 +46,18 @@ class NutCommand extends Command
         }
 
         $path = 'src/' . $this->container['extension.config']['commands']['folder'] . '/' . $name . '.php';
-        $namespace = $this->getExtensionNamespace() . '\\' .  $this->container['extension.config']['commands']['namespace'];
+        $namespace = $this->getNamespace('commands');
 
         if($this->container['filesystem']->has($path)) {
             $output->writeln('<error>Command with this name already exists.</error>');
             return;
         }
 
-        $content = file_get_contents($this->container['stubs.path'] . '/command/Command.php.stub');
-        $content = str_replace('{namespace}', $namespace, $content);
-        $content = str_replace('{name}', $name, $content);
+        $content = $this->getStub('/command/Command.php.stub');
+        $content = $this->fillPlaceholders($content, [
+            '{namespace}' => $namespace,
+            '{name}' => $name
+        ]);
 
         $this->container['filesystem']->put($path, $content);
 

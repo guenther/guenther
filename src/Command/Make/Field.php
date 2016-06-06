@@ -47,7 +47,7 @@ class Field extends Command
 
         $classPath = 'src/' . $this->container['extension.config']['fields']['folder'] . '/' . $name . '.php';
         $templatePath = 'templates/' . $this->container['extension.config']['fields']['template']['folder'] . '/_' . strtolower($name) . '.twig';
-        $namespace = $this->getExtensionNamespace() . '\\' .  $this->container['extension.config']['fields']['namespace'];
+        $namespace = $this->getNamespace('fields');
 
         if($this->container['filesystem']->has($classPath)) {
             $output->writeln('<error>Field with this name already exists.</error>');
@@ -60,15 +60,19 @@ class Field extends Command
         }
 
 
-        $content = file_get_contents($this->container['stubs.path'] . '/field/Field.php.stub');
-        $content = str_replace('{namespace}', $namespace, $content);
-        $content = str_replace('{name}', $name, $content);
-        $content = str_replace('{nameLc}', strtolower($name), $content);
-        $content = str_replace('{templatePath}', $this->container['extension.config']['fields']['template']['folder'] . '/_' . strtolower($name) . '.twig', $content);
+        $content = $this->getStub('/field/Field.php.stub');
+        $content = $this->fillPlaceholders($content, [
+            '{namespace}' => $namespace,
+            '{name}' => $name,
+            '{nameLc}' => strtolower($name),
+            '{templatePath}' => $this->container['extension.config']['fields']['template']['folder'] . '/_' . strtolower($name) . '.twig'
+        ]);
         $this->container['filesystem']->put($classPath, $content);
 
-        $content = file_get_contents($this->container['stubs.path'] . '/field/_field.twig.stub');
-        $content = str_replace('{nameLc}', strtolower($name), $content);
+        $content = $this->getStub('/field/_field.twig.stub');
+        $content = $this->fillPlaceholders($content, [
+            '{nameLc}' => strtolower($name)
+        ]);
         $this->container['filesystem']->put($templatePath, $content);
 
         $output->writeln("<info>Field was created.</info>");

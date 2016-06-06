@@ -39,12 +39,31 @@ class Command extends \Symfony\Component\Console\Command\Command
             if (strpos($file['filename'], 'Extension') !== false) {
                 $content = $this->container['filesystem']->read($file['path']);
                 preg_match('/namespace(.+);/', $content, $results);
-                if(isset($results[1])){
+                if (isset($results[1])) {
                     return trim($results[1]);
                 }
             }
         }
 
         return false;
+    }
+
+    protected function getNamespace($key)
+    {
+        return $this->getExtensionNamespace() . '\\' . $this->container['extension.config'][$key]['namespace'];
+    }
+
+    protected function getStub($path)
+    {
+        return file_get_contents($this->container['stubs.path'] . $path);
+    }
+
+    protected function fillPlaceholders($content, array $placeholders)
+    {
+        foreach ($placeholders as $placeholder => $replacement) {
+            $content = str_replace($placeholder, $replacement, $content);
+        }
+
+        return $content;
     }
 }

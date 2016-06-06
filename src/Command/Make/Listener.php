@@ -46,16 +46,18 @@ class Listener extends Command
         }
 
         $path = 'src/' . $this->container['extension.config']['listeners']['folder'] . '/' . $name . '.php';
-        $namespace = $this->getExtensionNamespace() . '\\' .  $this->container['extension.config']['listeners']['namespace'];
+        $namespace = $this->getNamespace('listeners');
 
         if($this->container['filesystem']->has($path)) {
             $output->writeln('<error>Event Listener with this name already exists.</error>');
             return;
         }
 
-        $content = file_get_contents($this->container['stubs.path'] . '/listener/Listener.php.stub');
-        $content = str_replace('{namespace}', $namespace, $content);
-        $content = str_replace('{name}', $name, $content);
+        $content = $this->getStub('/listener/Listener.php.stub');
+        $content = $this->fillPlaceholders($content, [
+            '{namespace}' => $namespace,
+            '{name}' => $name
+        ]);
 
         $this->container['filesystem']->put($path, $content);
 
