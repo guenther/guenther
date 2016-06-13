@@ -11,5 +11,14 @@ use Bolt\Extension\SimpleExtension;
  */
 class {nameUcf}Extension extends SimpleExtension
 {
-
+    /**
+     * Name of the extension
+     * Will be shown in the Backend
+     *
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return "{nameUcf}";
+    }
 }
