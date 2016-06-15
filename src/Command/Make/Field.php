@@ -38,7 +38,7 @@ class Field extends Command
         $name = $input->getArgument('name');
 
         if (!$name) {
-            $question = new Question('<question>Please enter the controller name:</question> ', false);
+            $question = new Question('<question>Please enter the field name:</question> ', false);
 
             while (!$name = $helper->ask($input, $output, $question)) {
                 $output->writeln("<comment>Name can't be empty!</comment>");
