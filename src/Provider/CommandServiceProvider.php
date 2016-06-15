@@ -11,11 +11,13 @@ class CommandServiceProvider implements ServiceProviderInterface
         //\Guenther\Guenther\Command\Test::class,
         \Guenther\Guenther\Command\Leaves::class,
         \Guenther\Guenther\Command\Init::class,
+
         \Guenther\Guenther\Command\Make\Controller::class,
         \Guenther\Guenther\Command\Make\Field::class,
         \Guenther\Guenther\Command\Make\Provider::class,
         \Guenther\Guenther\Command\Make\NutCommand::class,
         \Guenther\Guenther\Command\Make\Listener::class,
+        
         \Guenther\Guenther\Command\How\Controller::class,
         \Guenther\Guenther\Command\How\Field::class,
     ];
