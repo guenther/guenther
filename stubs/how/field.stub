@@ -1,0 +1,21 @@
+<comment>Description:</comment>
+You can create new field types to use in contenttypes.
+This is useful when you want to create something like a colorpicker.
+
+<comment>Create a new Field:</comment>
+Günther makes it really easy to create a new field class and template.
+Just execute 'guenther make:field <Name>'.
+
+Example:
+'guenther make:field ColorpickerField'
+
+<comment>Register a Field:</comment>
+Every field must be registered in your extension class.
+
+Example:
+public function registerFields()
+{
+    return [
+        new Field\ColorpickerField(),
+    ];
+}

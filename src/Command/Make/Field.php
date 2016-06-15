@@ -76,6 +76,7 @@ class Field extends Command
         $this->container['filesystem']->put($templatePath, $content);
 
         $output->writeln("<info>Field was created.</info>");
+        $output->writeln("<info>Check 'guenther how:field' for usage.</info>");
     }
 
 }
