@@ -62,6 +62,7 @@ class Controller extends Command
         $this->container['filesystem']->put($path, $content);
 
         $output->writeln("<info>Controller was created.</info>");
+        $output->writeln("<info>Check 'guenther how:controller' for usage.</info>");
     }
 
 }

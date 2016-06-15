@@ -1,0 +1,29 @@
+<comment>Description:</comment>
+A controller lets you create new routes within a
+specific namespace like '/subscription' or even '/'.
+
+<comment>Create a Controller:</comment>
+Günther makes it really easy to create a new controller class.
+Just execute 'guenther make:controller <Name>'.
+
+Example:
+'guenther make:controller SubscriptionController'
+
+<comment>Register a Controller:</comment>
+Every controller must be registered in your extension class
+as either a frontend or backend controller.
+
+Examples:
+public function registerFrontendControllers()
+{
+    return [
+        '/subscription' => new Controller\SubscriptionController($this->getConfig()),
+    ];
+}
+
+public function registerBackendControllers()
+{
+    return [
+        '/subscription' => new Controller\SubscriptionBackendController($this->getConfig()),
+    ];
+}
