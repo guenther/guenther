@@ -12,10 +12,9 @@ Example:
 <comment>Register an Event Listener:</comment>
 Every event listener must be registered in your extension class.
 
-Examples:
+Example:
 protected function subscribe(\Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher)
 {
     $storageEventListener = new Listener\StorageEventListener($this->getContainer(), $this->getConfig());
     $dispatcher->addListener(\Bolt\Events\StorageEvents::POST_SAVE, [$storageEventListener, 'onPostSave']);
 }
-
