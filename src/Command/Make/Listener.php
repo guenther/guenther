@@ -62,6 +62,7 @@ class Listener extends Command
         $this->container['filesystem']->put($path, $content);
 
         $output->writeln("<info>Event Listener was created.</info>");
+        $output->writeln("<info>Check 'guenther how:listener' for usage.</info>");
     }
 
 }

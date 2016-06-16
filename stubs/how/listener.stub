@@ -1,0 +1,21 @@
+<comment>Description:</comment>
+An event listener lets you, as the name suggests,
+listen to events. :D
+
+<comment>Create an Event Listener:</comment>
+Günther makes it really easy to create a new event listener class.
+Just execute 'guenther make:listener <Name>'.
+
+Example:
+'guenther make:controller StorageEventListener'
+
+<comment>Register an Event Listener:</comment>
+Every event listener must be registered in your extension class.
+
+Examples:
+protected function subscribe(\Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher)
+{
+    $storageEventListener = new Listener\StorageEventListener($this->getContainer(), $this->getConfig());
+    $dispatcher->addListener(\Bolt\Events\StorageEvents::POST_SAVE, [$storageEventListener, 'onPostSave']);
+}
+
