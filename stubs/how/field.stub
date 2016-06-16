@@ -19,3 +19,16 @@ public function registerFields()
         new Field\ColorpickerField(),
     ];
 }
+
+<comment>Register the templates:</comment>
+When you provide new fields, you have to register the
+'templates' folder from your extension manually in
+your extension class.
+
+Example:
+protected function registerTwigPaths()
+{
+    return [
+        'templates'
+    ];
+}
