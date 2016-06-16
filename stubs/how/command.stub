@@ -1,0 +1,22 @@
+<comment>Description:</comment>
+A nut command is useful when you need to run a task
+from the command line. For example, before or after deployment
+or some maintenance tasks.
+
+<comment>Create a Nut Command:</comment>
+Günther makes it really easy to create a new nut command class.
+Just execute 'guenther make:command <Name>'.
+
+Example:
+'guenther make:command BackupCommand'
+
+<comment>Register a Nut Command:</comment>
+Every nut command must be registered in your extension class.
+
+Example:
+protected function registerNutCommands(\Silex\Application $container)
+{
+    return [
+        new Nut\BackupCommand(),
+    ];
+}

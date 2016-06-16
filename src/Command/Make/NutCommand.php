@@ -62,6 +62,7 @@ class NutCommand extends Command
         $this->container['filesystem']->put($path, $content);
 
         $output->writeln("<info>Command was created.</info>");
+        $output->writeln("<info>Check 'guenther how:command' for usage.</info>");
     }
 
 }
