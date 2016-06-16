@@ -62,6 +62,7 @@ class Provider extends Command
         $this->container['filesystem']->put($path, $content);
 
         $output->writeln("<info>Service Provider was created.</info>");
+        $output->writeln("<info>Check 'guenther how:provider' for usage.</info>");
     }
 
 }

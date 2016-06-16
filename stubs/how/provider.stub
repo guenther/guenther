@@ -1,0 +1,22 @@
+<comment>Description:</comment>
+A Service Provider lets you register new, or extend
+existing, services inside Bolt.
+
+<comment>Create a new Service Provider:</comment>
+Günther makes it really easy to create a new service provider class.
+Just execute 'guenther make:provider <Name>'.
+
+Example:
+'guenther make:provider MyServiceProvider'
+
+<comment>Register a Service Provider:</comment>
+Every service provider must be registered in your extension class.
+
+Example:
+public function getServiceProviders()
+{
+    return [
+        $this,
+        new Provider\MyServiceProvider($this->getConfig()),
+    ];
+}
