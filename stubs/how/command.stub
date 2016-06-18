@@ -17,6 +17,6 @@ Example:
 protected function registerNutCommands(\Silex\Application $container)
 {
     return [
-        new Nut\BackupCommand(),
+        new Nut\BackupCommand($container, $this->getConfig()),
     ];
 }
