@@ -42,6 +42,21 @@ Supported types:
 - Command (nut)
 - Provider
 
+#### Built in Wiki
+
+You can view descriptions and usage examples directly on the command line.
+
+```
+guenther how:listener
+```
+
+Supported types:
+- Controller
+- Field
+- Listener
+- Command (nut)
+- Provider
+
 ### Configuration
 
 Guenther creates a `.guenther.yml` when you initialize a new extension. 
