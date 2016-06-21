@@ -23,10 +23,11 @@ Günther can:
 
  - bootstrap new extensions
  - create classes for service providers, listeners, controllers, etc…
+ - show you quick descriptions and implementation snippets for several things
 
 ## Usage
 
-For all commands, it's required that you are in the root folder of your
+For all commands, except `how:` ones, it's required that you are in the root folder of your
 extension.
 
 ###  Bootstrap a New Extension:
