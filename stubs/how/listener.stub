@@ -18,3 +18,22 @@ protected function subscribe(\Symfony\Component\EventDispatcher\EventDispatcherI
     $storageEventListener = new Listener\StorageEventListener($this->getContainer(), $this->getConfig());
     $dispatcher->addListener(\Bolt\Events\StorageEvents::POST_SAVE, [$storageEventListener, 'onPostSave']);
 }
+
+<comment>Register an Event Listener as Subscriber:</comment>
+The previous example registered every event inside the 'subscribe' method
+in your extension class. But you can also register your listener as an Event Subscriber.
+That gives you the ability to define the events it will listen on directly inside the listener class.
+
+Register the Listener as Subscriber:
+protected function subscribe(\Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher)
+{
+    $dispatcher->addSubscriber(new Listener\StorageEventListener($this->getContainer(), $this->getConfig()));
+}
+
+Define the Events it will listen on inside the listener class:
+public static function getSubscribedEvents()
+{
+    return [
+        \Bolt\Events\StorageEvents::POST_SAVE => 'onPostSave',
+    ];
+}
