@@ -3,13 +3,13 @@
 namespace {namespace};
 
 use Bolt\Events\StorageEvent;
-use Silex\Application;
+use Pimple as Container;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class {name} implements EventSubscriberInterface
 {
-    /** @var Application */
-    private $app;
+    /** @var Container */
+    private $container;
 
     /** @var array */
     private $config;
@@ -17,12 +17,12 @@ class {name} implements EventSubscriberInterface
     /**
      * Initiate the listener with Bolt Application instance and extension config.
      *
-     * @param Application $app
+     * @param Container $container
      * @param $config
      */
-    public function __construct(Application $app, array $config)
+    public function __construct(Container $container, array $config)
     {
-        $this->app = $app;
+        $this->container = $container;
         $this->config = $config;
     }
 
