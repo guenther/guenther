@@ -34,8 +34,8 @@ extension.
 
 ```
 cd extensions
-mkdir -p yourname/extensionname
-cd yourname/extensionname
+mkdir -p local/yourname/extensionname
+cd local/yourname/extensionname
 guenther init yourname extensionname
 ```
 
