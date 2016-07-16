@@ -2,46 +2,18 @@
 
 namespace Guenther\Guenther\Check;
 
-class ReadmeChecker
+class ReadmeChecker extends Checker
 {
     /**
      * @var array
      */
     private $composerJson;
-    /**
-     * @var callable
-     */
-    private $success;
-    /**
-     * @var callable
-     */
-    private $warning;
-    /**
-     * @var callable
-     */
-    private $error;
 
     public function __construct(array $composerJson, callable $success, callable $warning, callable $error)
     {
+        parent::__construct($success, $warning, $error);
+
         $this->composerJson = $composerJson;
-        $this->success = $success;
-        $this->warning = $warning;
-        $this->error = $error;
-    }
-
-    protected function success($check, $message)
-    {
-        return call_user_func_array($this->success, [$check, $message]);
-    }
-
-    protected function warning($check, $message)
-    {
-        return call_user_func_array($this->warning, [$check, $message]);
-    }
-
-    protected function error($check, $message)
-    {
-        return call_user_func_array($this->error, [$check, $message]);
     }
 
     public function checkReadme($filesystem, $stubsPath)

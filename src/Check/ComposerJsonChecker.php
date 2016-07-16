@@ -2,51 +2,23 @@
 
 namespace Guenther\Guenther\Check;
 
-class ComposerJsonChecker
+class ComposerJsonChecker extends Checker
 {
     /**
      * @var array
      */
     private $composerJson;
-    /**
-     * @var callable
-     */
-    private $success;
-    /**
-     * @var callable
-     */
-    private $warning;
-    /**
-     * @var callable
-     */
-    private $error;
 
     public function __construct(array $composerJson, callable $success, callable $warning, callable $error)
     {
+        parent::__construct($success, $warning, $error);
+
         $this->composerJson = $composerJson;
-        $this->success = $success;
-        $this->warning = $warning;
-        $this->error = $error;
-    }
-
-    protected function success($check, $message)
-    {
-        return call_user_func_array($this->success, [$check, $message]);
-    }
-
-    protected function warning($check, $message)
-    {
-        return call_user_func_array($this->warning, [$check, $message]);
-    }
-
-    protected function error($check, $message)
-    {
-        return call_user_func_array($this->error, [$check, $message]);
     }
 
     public function checkName()
     {
-        if (!isset($this->composerJson['name']) || is_null($this->composerJson['name']) || $this->composerJson['name'] === '') {
+        if (!isset($this->composerJson['name']) || $this->checkStringValue($this->composerJson['name'])) {
             return $this->error('Check Name', 'Name field in composer.json is missing or empty!');
         }
 
@@ -55,7 +27,7 @@ class ComposerJsonChecker
 
     public function checkDescription()
     {
-        if (!isset($this->composerJson['description']) || is_null($this->composerJson['description']) || $this->composerJson['description'] === '') {
+        if (!isset($this->composerJson['description']) || $this->checkStringValue($this->composerJson['description'])) {
             return $this->error('Check Description', 'Description field in composer.json is missing or empty!');
         }
 
@@ -68,7 +40,7 @@ class ComposerJsonChecker
 
     public function checkKeywords()
     {
-        if (!isset($this->composerJson['keywords']) || is_null($this->composerJson['keywords']) || !count($this->composerJson['keywords'])) {
+        if (!isset($this->composerJson['keywords']) || $this->checkArrayValue($this->composerJson['keywords'])) {
             return $this->error('Check Keywords', 'Keywords field in composer.json is missing or empty!');
         }
 
@@ -81,7 +53,7 @@ class ComposerJsonChecker
 
     public function checkType()
     {
-        if (!isset($this->composerJson['type']) || is_null($this->composerJson['type']) || $this->composerJson['type'] === '') {
+        if (!isset($this->composerJson['type']) || $this->checkStringValue($this->composerJson['type'])) {
             return $this->error('Check Type', 'Type field in composer.json is missing or empty!');
         }
 
@@ -94,7 +66,7 @@ class ComposerJsonChecker
 
     public function checkAuthors()
     {
-        if (!isset($this->composerJson['authors']) || is_null($this->composerJson['authors']) || !count($this->composerJson['authors'])) {
+        if (!isset($this->composerJson['authors']) || $this->checkArrayValue($this->composerJson['authors'])) {
             return $this->error('Check Authors', 'Authors field in composer.json is missing or empty!');
         }
 
@@ -103,11 +75,11 @@ class ComposerJsonChecker
         }
 
         foreach ($this->composerJson['authors'] as $author) {
-            if (!isset($author['name']) || is_null($author['name']) || $author['name'] === '') {
+            if (!isset($author['name']) || $this->checkStringValue($author['name'])) {
                 return $this->error('Check Authors', 'Name field of one author in composer.json is missing or empty!');
             }
 
-            if (!isset($author['email']) || is_null($author['email']) || $author['email'] === '') {
+            if (!isset($author['email']) || $this->checkStringValue($author['email'])) {
                 return $this->error('Check Authors', 'Email field of one author in composer.json is missing or empty!');
             }
         }
@@ -117,7 +89,7 @@ class ComposerJsonChecker
 
     public function checkLicense()
     {
-        if (!isset($this->composerJson['license']) || is_null($this->composerJson['license']) || $this->composerJson['license'] === '') {
+        if (!isset($this->composerJson['license']) || $this->checkStringValue($this->composerJson['license'])) {
             return $this->error('Check License', 'License field in composer.json is missing or empty!');
         }
 
@@ -130,11 +102,11 @@ class ComposerJsonChecker
 
     public function checkRequirements()
     {
-        if (!isset($this->composerJson['require']) || is_null($this->composerJson['require']) || !count($this->composerJson['require'])) {
+        if (!isset($this->composerJson['require']) || $this->checkArrayValue($this->composerJson['require'])) {
             return $this->error('Check Requirements', 'Require field in composer.json is missing or empty!');
         }
 
-        if (!isset($this->composerJson['require']['bolt/bolt']) || is_null($this->composerJson['require']['bolt/bolt']) || $this->composerJson['require']['bolt/bolt'] === '') {
+        if (!isset($this->composerJson['require']['bolt/bolt']) || $this->checkStringValue($this->composerJson['require']['bolt/bolt'])) {
             return $this->error('Check Requirements', 'You need to require a version of \'bolt/bolt\' in composer.json!');
         }
 
@@ -143,7 +115,7 @@ class ComposerJsonChecker
 
     public function checkBoltClass($extensionNamespace)
     {
-        if (!isset($this->composerJson['extra']['bolt-class']) || is_null($this->composerJson['extra']['bolt-class']) || $this->composerJson['extra']['bolt-class'] === '') {
+        if (!isset($this->composerJson['extra']['bolt-class']) || $this->checkStringValue($this->composerJson['extra']['bolt-class'])) {
             return $this->error('Check Bolt Class', 'Bolt class field in composer.json is missing or empty!');
         }
 
@@ -160,7 +132,7 @@ class ComposerJsonChecker
 
     public function checkIcon($filesystem)
     {
-        if (!isset($this->composerJson['extra']['bolt-icon']) || is_null($this->composerJson['extra']['bolt-icon']) || $this->composerJson['extra']['bolt-icon'] === '') {
+        if (!isset($this->composerJson['extra']['bolt-icon']) || $this->checkStringValue($this->composerJson['extra']['bolt-icon'])) {
             return $this->warning('Check Icon', 'Icon field in composer.json is missing or empty.');
         }
 
@@ -173,7 +145,7 @@ class ComposerJsonChecker
 
     public function checkScreenshots($filesystem)
     {
-        if (!isset($this->composerJson['extra']['bolt-screenshots']) || is_null($this->composerJson['extra']['bolt-screenshots']) || !count($this->composerJson['extra']['bolt-screenshots'])) {
+        if (!isset($this->composerJson['extra']['bolt-screenshots']) || $this->checkArrayValue($this->composerJson['extra']['bolt-screenshots'])) {
             return $this->warning('Check Screenshots', 'Screenshots field in composer.json is missing or empty.');
         }
 

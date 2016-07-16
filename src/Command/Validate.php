@@ -90,10 +90,10 @@ class Validate extends Command
         $composerJson = json_decode($this->container['filesystem']->read('composer.json'), true);
 
         $composerJsonChecker = new ComposerJsonChecker($composerJson, [$this, 'success'], [$this, 'warning'], [$this, 'error']);
-        $composerJsonChecker->checkName($composerJson);
-        $composerJsonChecker->checkDescription($composerJson);
-        $composerJsonChecker->checkKeywords($composerJson);
-        $composerJsonChecker->checkType($composerJson);
+        $composerJsonChecker->checkName();
+        $composerJsonChecker->checkDescription();
+        $composerJsonChecker->checkKeywords();
+        $composerJsonChecker->checkType();
         $composerJsonChecker->checkAuthors();
         $composerJsonChecker->checkLicense();
         $composerJsonChecker->checkRequirements();
@@ -109,7 +109,7 @@ class Validate extends Command
     {
         $this->successes++;
         $this->messages[] = [
-            $this->successEmoji,
+            'success',
             $check,
             $message,
         ];
@@ -119,7 +119,7 @@ class Validate extends Command
     {
         $this->warnings++;
         $this->messages[] = [
-            $this->warningEmoji,
+            'warning',
             $check,
             $message,
         ];
@@ -129,49 +129,28 @@ class Validate extends Command
     {
         $this->errors++;
         $this->messages[] = [
-            $this->errorEmoji,
+            'error',
             $check,
             $message,
         ];
     }
 
-    protected function displayResultsTable(OutputInterface $output)
+    protected function displayResultsTable(OutputInterface $output, $clean = false)
     {
         $table = new Table($output);
         $table->setHeaders(['Result', 'Check', 'Comment']);
 
         foreach ($this->messages as $message) {
-            $table->addRow($message);
-        }
-
-        $table->addRow(new TableSeparator());
-
-        $table->addRow([new TableCell($this->getResultText(), ['colspan' => 3])]);
-        $table->render();
-    }
-
-    protected function displayCleanResultsTable(OutputInterface $output)
-    {
-        $table = new Table($output);
-        $table->setHeaders(['Result', 'Check', 'Comment']);
-
-        foreach ($this->messages as $message) {
-            $row = [];
-            if ($message[0] === $this->successEmoji) {
-                $row[0] = 'success';
-            } elseif ($message[0] === $this->warningEmoji) {
-                $row[0] = 'warning';
-            } else {
-                $row[0] = 'error';
+            $row = $message;
+            if (!$clean) {
+                $row[0] = $this->textToEmoji($message[0]);
             }
-            $row[1] = $message[1];
-            $row[2] = $message[2];
             $table->addRow($row);
         }
 
         $table->addRow(new TableSeparator());
 
-        $table->addRow([new TableCell($this->getCleanResultText(), ['colspan' => 3])]);
+        $table->addRow([new TableCell($this->getResultText($clean), ['colspan' => 3])]);
         $table->render();
     }
 
@@ -180,29 +159,25 @@ class Validate extends Command
         $output->writeln(json_encode($this->getResultsArray(), 128));
     }
 
-    protected function getResultText()
+    protected function getResultText($clean = false)
     {
         $result = '';
         if ($this->successes && !$this->warnings && !$this->errors) {
-            $result = "\xe2\x9c\x85  <info>Everything looks fine! This extension can be released.</info>";
+            $result = $this->successEmoji . '  <info>Everything looks fine! This extension can be released.</info>';
         } else if ($this->warnings && !$this->errors) {
-            $result = "\xe2\x9d\x97  <comment>There are still a few things to improve but no critical errors. This extension can be released.</comment>";
+            $result = $this->warningEmoji . '  <comment>There are still a few things to improve but no critical errors. This extension can be released.</comment>';
         } else if ($this->errors) {
-            $result = "\xe2\x9d\x8c  <error>You can't release this extension yet! Please fix the above errors.</error>";
+            $result = $this->errorEmoji . '  <error>You can\'t release this extension yet! Please fix the above errors.</error>';
         }
 
-        return $result;
-    }
-
-    protected function getCleanResultText()
-    {
-        $result = '';
-        if ($this->successes && !$this->warnings && !$this->errors) {
-            $result = 'Everything looks fine! This extension can be released';
-        } else if ($this->warnings && !$this->errors) {
-            $result = 'There are still a few things to improve but no critical errors. This extension can be released.';
-        } else if ($this->errors) {
-            $result = 'You can\'t release this extension yet! Please fix the above errors.';
+        if ($clean) {
+            if ($this->successes && !$this->warnings && !$this->errors) {
+                $result = 'Everything looks fine! This extension can be released';
+            } else if ($this->warnings && !$this->errors) {
+                $result = 'There are still a few things to improve but no critical errors. This extension can be released.';
+            } else if ($this->errors) {
+                $result = 'You can\'t release this extension yet! Please fix the above errors.';
+            }
         }
 
         return $result;
@@ -217,6 +192,21 @@ class Validate extends Command
         return 0;
     }
 
+    protected function textToEmoji($text)
+    {
+        if ($text === 'success') {
+            return $this->successEmoji;
+        }
+        if ($text === 'warning') {
+            return $this->warningEmoji;
+        }
+        if ($text === 'error') {
+            return $this->errorEmoji;
+        }
+
+        return '';
+    }
+
     protected function getResultsArray()
     {
         $data = [];
@@ -226,14 +216,7 @@ class Validate extends Command
 
             $check['check'] = $message[1];
             $check['comment'] = $message[2];
-
-            if ($message[0] === $this->successEmoji) {
-                $check['result'] = 'success';
-            } elseif ($message[0] === $this->warningEmoji) {
-                $check['result'] = 'warning';
-            } else {
-                $check['result'] = 'error';
-            }
+            $check['result'] = $message[0];
 
             $data['checks'][] = $check;
         }
@@ -241,7 +224,7 @@ class Validate extends Command
         $data['successes'] = $this->successes;
         $data['warnings'] = $this->warnings;
         $data['errors'] = $this->errors;
-        $data['result'] = $this->getCleanResultText();
+        $data['result'] = $this->getResultText(true);
 
         return $data;
     }
@@ -264,7 +247,7 @@ class Validate extends Command
     protected function outputResultsAsTextToFile($path)
     {
         $output = new StreamOutput(fopen($path, 'w'));
-        $this->displayCleanResultsTable($output);
+        $this->displayResultsTable($output, true);
     }
 
     protected function outputResultsAsJsonToFile($path)
