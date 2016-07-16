@@ -2,7 +2,7 @@
 
 namespace Guenther\Guenther\Check;
 
-class Checker
+abstract class Checker
 {
     /**
      * @var callable
