@@ -68,6 +68,69 @@ Supported types:
 - Command (nut)
 - Provider
 
+### Validate an Extension
+
+You can use the validate command to check if your extension is ready to be released. 
+It will mostly check if all the meta data is on it's place, so you still have to 
+check your extensions code and functionality on your own.
+
+```
+guenther validate
+```
+
+#### Force Command Execution
+
+By default, this command will only run when it detects a local extension. 
+However, you can can force the execution with the `--force` or `-f` parameter.
+
+```
+guenther validate --force
+```
+
+#### Exit Codes
+
+The validate command returns proper exit codes which makes it usable in a CI environment.
+
+If all checks passed or even contain a few warnings, it will return with an exit code of `0`.
+If there are any errors, it will return with an exit code of `1`.
+
+#### Save Result to a File
+
+You can output all the checks + the result to a file of your choice. 
+
+##### Save as Text
+
+To save the results table without the emojis to a file, use the following parameter:
+
+```
+guenther validate --output-text=/path/to/file.txt
+```
+
+##### Save as Json
+
+To save a json string with all checks, their results and the final result, use the following parameter:
+
+```
+guenther validate --output-json=/path/to/file.json
+```
+
+##### Save as Yaml
+
+To save a yaml string with all checks, their results and the final result, use the following parameter:
+
+```
+guenther validate --output-yml=/path/to/file.yml
+```
+
+##### All at Once
+
+Of course, you can also use all three output options at once:
+
+```
+guenther validate --output-text=result.txt --output-json=result.json --output-yml=result.yml
+```
+
+
 ## Configuration
 
 Guenther creates a `.guenther.yml` when you initialize a new extension. This
