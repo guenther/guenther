@@ -81,7 +81,7 @@ guenther validate
 #### Force Command Execution
 
 By default, this command will only run when it detects a local extension. 
-However, you can can force the execution with the `--force` or `-f` parameter.
+However, you can force the execution with the `--force` or `-f` parameter.
 
 ```
 guenther validate --force
