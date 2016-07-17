@@ -4,7 +4,7 @@ use Pimple\Container;
 
 $container = new Container();
 
-$container['version'] = '0.2.1';
+$container['version'] = '0.3';
 
 $container['config'] = require_once __DIR__.'/../config/config.php';
 
