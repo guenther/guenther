@@ -64,5 +64,4 @@ class NutCommand extends Command
         $output->writeln("<info>Command was created.</info>");
         $output->writeln("<info>Check 'guenther how:command' for usage.</info>");
     }
-
 }

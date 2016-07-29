@@ -64,5 +64,4 @@ class Provider extends Command
         $output->writeln("<info>Service Provider was created.</info>");
         $output->writeln("<info>Check 'guenther how:provider' for usage.</info>");
     }
-
 }

@@ -21,5 +21,4 @@ class Provider extends Command
 
         $output->writeln($text);
     }
-
 }

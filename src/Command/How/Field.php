@@ -21,5 +21,4 @@ class Field extends Command
 
         $output->writeln($text);
     }
-
 }

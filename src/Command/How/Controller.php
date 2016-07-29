@@ -21,5 +21,4 @@ class Controller extends Command
 
         $output->writeln($text);
     }
-
 }

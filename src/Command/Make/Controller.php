@@ -64,5 +64,4 @@ class Controller extends Command
         $output->writeln("<info>Controller was created.</info>");
         $output->writeln("<info>Check 'guenther how:controller' for usage.</info>");
     }
-
 }

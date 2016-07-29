@@ -78,5 +78,4 @@ class Field extends Command
         $output->writeln("<info>Field was created.</info>");
         $output->writeln("<info>Check 'guenther how:field' for usage.</info>");
     }
-
 }

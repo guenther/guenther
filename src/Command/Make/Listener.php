@@ -64,5 +64,4 @@ class Listener extends Command
         $output->writeln("<info>Event Listener was created.</info>");
         $output->writeln("<info>Check 'guenther how:listener' for usage.</info>");
     }
-
 }

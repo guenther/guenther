@@ -104,5 +104,4 @@ class Init extends Command
             $this->container['filesystem']->put($destination, $content);
         }
     }
-
 }

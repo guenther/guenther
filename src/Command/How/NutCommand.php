@@ -21,5 +21,4 @@ class NutCommand extends Command
 
         $output->writeln($text);
     }
-
 }

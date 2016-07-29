@@ -21,5 +21,4 @@ class Listener extends Command
 
         $output->writeln($text);
     }
-
 }
