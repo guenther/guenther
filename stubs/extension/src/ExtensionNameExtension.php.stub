@@ -1,15 +1,15 @@
 <?php
 
-namespace Bolt\Extension\{vendorUcf}\{nameUcf};
+namespace Bolt\Extension\{vendorUcf}\{nameUCC};
 
 use Bolt\Extension\SimpleExtension;
 
 /**
- * {nameUcf} extension class.
+ * {nameTc} extension class.
  *
  * @author Your Name <you@example.com>
  */
-class {nameUcf}Extension extends SimpleExtension
+class {nameUCC}Extension extends SimpleExtension
 {
 
 }

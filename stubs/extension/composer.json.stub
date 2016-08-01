@@ -1,5 +1,5 @@
 {
-    "name": "{vendorLc}/{nameLc}",
+    "name": "{vendorLc}/{nameKc}",
     "description": "",
     "type": "bolt-extension",
     "keywords": [
@@ -21,17 +21,17 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Bolt\\Extension\\{vendorUcf}\\{nameUcf}\\": "src"
+            "Bolt\\Extension\\{vendorUcf}\\{nameUCC}\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bolt\\Extension\\{vendorUcf}\\{nameUcf}\\Tests\\": "tests",
+            "Bolt\\Extension\\{vendorUcf}\\{nameUCC}\\Tests\\": "tests",
             "Bolt\\Tests\\": "vendor/bolt/bolt/tests/phpunit/unit/"
         }
     },
     "extra": {
         "bolt-assets": "web",
-        "bolt-class": "Bolt\\Extension\\{vendorUcf}\\{nameUcf}\\{nameUcf}Extension"
+        "bolt-class": "Bolt\\Extension\\{vendorUcf}\\{nameUcf}\\{nameUCC}Extension"
     }
 }

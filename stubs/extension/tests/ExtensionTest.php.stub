@@ -6,22 +6,22 @@ use Bolt\Tests\BoltUnitTest;
 use Bolt\Extension\{vendorUcf}\{nameUcf}\{nameUcf}Extension;
 
 /**
- * {nameUcf} testing class.
+ * {nameTc} testing class.
  *
  * @author Your Name <you@example.com>
  */
 class ExtensionTest extends BoltUnitTest
 {
     /**
-     * Ensure that the {nameUcf} extension loads correctly.
+     * Ensure that the {nameTc} extension loads correctly.
      */
     public function testExtensionBasics()
     {
         $app = $this->getApp(false);
-        $extension = new {nameUcf}Extension($app);
+        $extension = new {nameUCC}Extension($app);
 
         $name = $extension->getName();
-        $this->assertSame($name, '{nameUcf}');
+        $this->assertSame($name, '{nameUCC}');
         $this->assertInstanceOf('\Bolt\Extension\ExtensionInterface', $extension);
     }
 

@@ -2,6 +2,7 @@
 
 namespace Guenther\Guenther\Command;
 
+use Guenther\Guenther\Parser\NameParser;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -66,12 +67,16 @@ class Init extends Command
     private function createFiles($vendor, $name)
     {
         $stubs = $this->container['stubs.path'] . '/extension';
+        $nameParser = NameParser::parseFromCamelCase($name);
 
         $vendorUcf = ucfirst($vendor);
         $nameUcf = ucfirst($name);
+        $nameTc = $nameParser->getAsTitleCase();
+        $nameUCC = $nameParser->getAsUpperCamelCase();
 
         $vendorLc = strtolower($vendor);
         $nameLc = strtolower($name);
+        $nameKc = $nameParser->getAsKebabCase();
 
         $mapping = [
             $stubs . '/config/config.yml.dist.stub' => '/config/config.yml.dist',
@@ -98,8 +103,11 @@ class Init extends Command
 
             $content = str_replace('{vendorUcf}', $vendorUcf, $content);
             $content = str_replace('{nameUcf}', $nameUcf, $content);
+            $content = str_replace('{nameTc}', $nameTc, $content);
+            $content = str_replace('{nameUCC}', $nameUCC, $content);
             $content = str_replace('{vendorLc}', $vendorLc, $content);
             $content = str_replace('{nameLc}', $nameLc, $content);
+            $content = str_replace('{nameKc}', $nameKc, $content);
 
             $this->container['filesystem']->put($destination, $content);
         }
