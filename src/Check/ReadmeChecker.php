@@ -2,6 +2,8 @@
 
 namespace Guenther\Guenther\Check;
 
+use Guenther\Guenther\Parser\NameParser;
+
 class ReadmeChecker extends Checker
 {
     /**
@@ -50,10 +52,11 @@ class ReadmeChecker extends Checker
     protected function isReadmeEqualWithBootstrappedOne($filesystem, $stubsPath)
     {
         $extensionName = explode('/', $this->composerJson['name'])[1];
+        $nameParser = NameParser::parseFromKebabCase($extensionName);
 
         $exampleReadme = file_get_contents($stubsPath . '/extension/README.md.stub');
-        $exampleReadme = str_replace('{nameUcf}', ucfirst($extensionName), $exampleReadme);
-        $exampleReadme = str_replace('{nameLc}', strtolower($extensionName), $exampleReadme);
+        $exampleReadme = str_replace('{nameTc}', $nameParser->getAsTitleCase(), $exampleReadme);
+        $exampleReadme = str_replace('{nameKc}', $nameParser->getAsKebabCase(), $exampleReadme);
 
         $readme = $this->getReadme($filesystem);
 
