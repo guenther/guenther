@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolt\Extension\{vendorUcf}\{nameUCC};
+namespace Bolt\Extension\{vendorUCC}\{nameUCC};
 
 use Bolt\Extension\SimpleExtension;
 

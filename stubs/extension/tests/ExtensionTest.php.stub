@@ -1,9 +1,9 @@
 <?php
 
-namespace Bolt\Extension\{vendorUcf}\{nameUcf}\Tests;
+namespace Bolt\Extension\{vendorUCC}\{nameUCC}\Tests;
 
 use Bolt\Tests\BoltUnitTest;
-use Bolt\Extension\{vendorUcf}\{nameUcf}\{nameUcf}Extension;
+use Bolt\Extension\{vendorUCC}\{nameUCC}\{nameUCC}Extension;
 
 /**
  * {nameTc} testing class.

@@ -21,17 +21,17 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Bolt\\Extension\\{vendorUcf}\\{nameUCC}\\": "src"
+            "Bolt\\Extension\\{vendorUCC}\\{nameUCC}\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bolt\\Extension\\{vendorUcf}\\{nameUCC}\\Tests\\": "tests",
+            "Bolt\\Extension\\{vendorUCC}\\{nameUCC}\\Tests\\": "tests",
             "Bolt\\Tests\\": "vendor/bolt/bolt/tests/phpunit/unit/"
         }
     },
     "extra": {
         "bolt-assets": "web",
-        "bolt-class": "Bolt\\Extension\\{vendorUcf}\\{nameUcf}\\{nameUCC}Extension"
+        "bolt-class": "Bolt\\Extension\\{vendorUCC}\\{nameUCC}\\{nameUCC}Extension"
     }
 }
