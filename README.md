@@ -39,6 +39,9 @@ cd local/yourname/extensionname
 guenther init yourname extensionname
 ```
 
+**Note:** Local extensions (often used for testing) will not have their assets auto-copied
+to the web folder, see the [how-to on the subject][howto] for more info.
+
 ### Create Classes
 
 ```
@@ -171,3 +174,4 @@ This tool is open-sourced software licensed under the [MIT license][mit].
 
 [bolt]: https://bolt.cm/
 [mit]: http://opensource.org/licenses/MIT
+[howto]: https://docs.bolt.cm/3.1/howto/installing-local-extensions#step-4
